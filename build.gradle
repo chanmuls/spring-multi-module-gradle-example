@@ -1,0 +1,58 @@
+allprojects {
+    group = 'new.devtopia'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+    version = '1.0'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        annotationProcessor "org.projectlombok:lombok"
+        compileOnly "org.projectlombok:lombok:1.18.4"
+        testCompileOnly "org.projectlombok:lombok:1.18.4"
+
+        implementation "commons-io:commons-io:2.6"
+        implementation "io.jsonwebtoken:jjwt:0.9.1"
+        implementation "org.apache.commons:commons-lang3:3.8.1"
+        implementation "org.mindrot:jbcrypt:0.4"
+
+        implementation "org.slf4j:slf4j-api"
+        implementation "org.slf4j:jcl-over-slf4j"
+        implementation "org.slf4j:log4j-over-slf4j"
+        implementation "org.slf4j:jul-to-slf4j"
+
+        implementation "ch.qos.logback:logback-classic"
+        implementation 'org.codehaus.janino:janino'
+
+        compile "commons-codec:commons-codec:1.13"
+        compile "com.google.guava:guava:27.0.1-jre"
+        compile "com.google.code.findbugs:jsr305:3.0.2"
+        compile "org.javassist:javassist:3.23.2-GA"
+        compile "com.googlecode.json-simple:json-simple:1.1.1"
+
+        testImplementation ("org.springframework.boot:spring-boot-starter-test") {
+            exclude group: "junit", module: "junit"
+        }
+
+        testImplementation "org.junit.platform:junit-platform-engine:${junitPlatformVersion}"
+        testImplementation "org.junit.platform:junit-platform-launcher:${junitPlatformVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}"
+        testImplementation "org.assertj:assertj-core:${assertjVersion}"
+        testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
