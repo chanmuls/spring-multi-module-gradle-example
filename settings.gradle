@@ -1,3 +1,4 @@
 rootProject.name = 'spring-multi-module-gradle-example'
 include 'web'
+include 'core'
 
